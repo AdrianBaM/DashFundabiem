@@ -1,69 +1,428 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+*{
+  list-style: none;
 }
 
 body {
   margin: 0;
+  padding: 0;
+  background-color: #F3F7FA;
+  color: #2F49D1;
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* Navbar.css */
+.navbar {
+  background-color: #2f49d1;
+  color: white;
+  padding: 1px;
+}
+
+.navbar ul {
+  list-style-type: none;
+  padding: 0;
   display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  justify-content: space-around;
+  align-items: center; /* Alinea verticalmente los elementos en el centro */
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+.navbar li {
+  margin: 0;
 }
 
-button {
-  border-radius: 8px;
+.navbar a {
+  text-decoration: none;
+  color: white;
   border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  padding: 5px 10px;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+/* Estilo para el enlace activo o seleccionado */
+.navbar a:active,
+.navbar a:focus,
+.navbar a:hover {
+  background-color: #1E2A80; /* Cambia el fondo en estado activo o en el enlace seleccionado */
+  color: #fff; /* Cambia el color de texto en estado activo o en el enlace seleccionado */
+  border-radius: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+/* Estilo para la imagen del logo */
+.custom-image {
+  width: 76px; /* Ajusta el tamaño de la imagen según tus necesidades */
+  height: auto; /* Mantén la proporción original de la imagen */
+}
+.custom-image2 {
+  width: 85px; /* Ajusta el tamaño de la imagen según tus necesidades */
+  height: auto; /* Mantén la proporción original de la imagen */
+}
+
+
+
+/* TuEstilo.css */
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 80vh; /* Ajusta la altura del contenedor principal según tus necesidades */
+  padding-top: 16px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.container2 {
+  display: grid;
+  height: 30vh; /* Ajusta la altura del contenedor principal según tus necesidades */
+  padding-top: 6px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.card {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr; /* Tres columnas iguales */
+  grid-template-rows: 1fr 1fr;
+  gap: 10px;
+  border-radius: 15px;
+  background: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 10px;
+}
+
+.card2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr; /* Tres columnas iguales */
+  border-radius: 15px;
+  background: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 10px;
+  justify-content: space-between;
+}
+
+.image {
+  grid-column: 1 / 2; /* Primera columna */
+  grid-row: 1 / 4; /* Primera y segunda fila */
+}
+
+.center {
+  grid-column: 2 / 3; /* Segunda columna */
+  grid-row: 1 / 3; /* Primera y segunda fila */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.numero-paciente {
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+
+/* Estilos para el botón "Iniciar" en estado 0 y estado 1 */
+button.iniciar {
+  background-color: #28a745; /* Cambia a color verde */
+  color: white; /* Texto en color blanco */
+  padding: 10px 20px; /* Reduce el relleno para hacer el botón más pequeño */
+  cursor: pointer; /* Cambia el cursor al pasar por encima del botón */
+  border-radius: 15px; /* Borde redondeado de 15px */
+  width: auto; /* Ancho automático para adaptarse al contenido */
+  font-size: 17px;
+}
+
+/* Estilos para el botón "Cancelar" (rojo) */
+button.cancelar {
+  background-color: #e22525; /* Fondo rojo */
+  color: white; /* Texto en color blanco */
+  padding: 10px 20px; /* Reduce el relleno para hacer el botón más pequeño */
+  cursor: pointer; /* Cambia el cursor al pasar por encima del botón */
+  border-radius: 15px; /* Borde redondeado de 15px */
+  width: auto; /* Ancho automático para adaptarse al contenido */
+  font-size: 17px;
+}
+
+
+.new-row{
+  display: block; /* Muestra el temporizador en el estado 2 */
+  text-align: end;
+  font-size: 20px;
+}
+
+/* Estilos para el botón "Abrir" (color azul, por ejemplo) */
+.new-row .abrir {
+  background-color: #28a745; /* Cambia a color verde */
+  color: white; /* Texto en color blanco */
+  padding: 10px 20px; /* Reduce el relleno para hacer el botón más pequeño */
+  cursor: pointer; /* Cambia el cursor al pasar por encima del botón */
+  border-radius: 15px; /* Borde redondeado de 15px */
+  width: auto; /* Ancho automático para adaptarse al contenido */
+  font-size: 17px;
+}
+
+/* Estilos para el botón "Cerrar" (color rojo, por ejemplo) */
+.new-row .cerrar {
+  background-color: #e22525; /* Cambia a color verde */
+  color: white; /* Texto en color blanco */
+  padding: 10px 20px; /* Reduce el relleno para hacer el botón más pequeño */
+  cursor: pointer; /* Cambia el cursor al pasar por encima del botón */
+  border-radius: 15px; /* Borde redondeado de 15px */
+  width: auto; /* Ancho automático para adaptarse al contenido */
+  font-size: 17px;
+}
+
+.form{
+  flex-direction: row;
+}
+
+.form2{
+  flex: 1; /* La segunda columna ocupa todo el espacio disponible */
+  display: flex;
+  flex-direction: column; /* Los elementos en la segunda columna están en una columna */
+  padding-left: 30px;
+}
+
+
+/* Estilos para mostrar el temporizador en estado 2 */
+.card.estado-2 .timer {
+  display: block; /* Muestra el temporizador en el estado 2 */
+  text-align: end;;
+  font-size: 20px;
+}
+
+.card.estado-2 .pulso-cardiaco{
+  display: block; /* Muestra el temporizador en el estado 2 */
+  text-align: end;;
+  font-size: 20px;
+}
+
+/* Oculta el temporizador en estado 0 y estado 1 */
+.card:not(.estado-2) .timer {
+  display: none;
+}
+
+.card:not(.estado-1) .form2 {
+  display: none;
+}
+
+.card:not(.estado-2) .pulso-cardiaco {
+  display: none;
+}
+
+/* Estilos para el formulario en estado 1 */
+.card.estado-1 .form {
+  display: flex;
+  flex-direction: row; /* Cambia la dirección a horizontal (fila) */
+  align-items: center; /* Centrar verticalmente */
+}
+
+.card.estado-1 .form2 {
+  display: flex;
+  flex-direction: row; /* Cambia la dirección a horizontal (fila) */
+  align-items: center; /* Centrar verticalmente */
+}
+
+.new-row button {
+  margin: 5px; /* Agrega un pequeño espacio entre los botones y otros elementos */
+  padding: 10px 20px; /* Espacio interno en los botones */
+  border: none; /* Sin borde */
+  border-radius: 5px; /* Borde redondeado */
+  cursor: pointer; /* Cambia el cursor al pasar por encima del botón */
+  width: auto; /* Ancho automático para adaptarse al contenido */
+  font-size: 17px;
+}
+
+
+
+.inputs-column {
+  flex: 1; /* La primera columna ocupa todo el espacio disponible */
+  display: flex;
+  flex-direction: column; /* Los elementos en la primera columna están en una columna */
+}
+
+.buttons-column {
+  flex: 1; /* La segunda columna ocupa todo el espacio disponible */
+  display: flex;
+  flex-direction: column; /* Los elementos en la segunda columna están en una columna */
+  padding-left: 30px;
+}
+
+/* Agrega espacio entre los inputs del formulario en estado 1 */
+.card.estado-1 .form .inputs-column input {
+  margin-bottom: 10px;
+}
+
+/* Estilo para hacer que los inputs sean más grandes */
+input {
+  width: 200px; /* Ancho deseado */
+  height: 30px; /* Alto deseado */
+}
+
+.estado-2-details {
+  margin-top: 20px; /* Ajusta el margen según tu diseño */
+}
+
+.pulso-cardiaco {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+
+/* Agrega margen inferior a los botones de la segunda columna */
+.card.estado-1 .form .buttons-column button {
+  margin-bottom: 10px;
+}
+
+.card.estado-1 .form2 .new-row button {
+  margin-bottom: 10px;
+}
+
+button.parar {
+  background-color: #e22525; /* Fondo rojo, igual que el botón "Cancelar" */
+  color: white; /* Texto en color blanco */
+  padding: 8px 16px; /* Puedes ajustar el relleno según tus necesidades */
+  cursor: pointer; /* Cambia el cursor al pasar por encima del botón */
+  border-radius: 15px; /* Borde redondeado de 15px */
+  width: auto; /* Ancho automático para adaptarse al contenido */
+  font-size: 18px;
+}
+
+.card .image img {
+  max-width: 30%; /* Limita el ancho de la imagen al 100% del contenedor */
+  height: auto; /* Ajusta la altura automáticamente para mantener la proporción original */
+}
+
+
+/* TaskPage.css */
+
+.task-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.tasks-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Cuadrícula de 3 columnas */
+  grid-gap: 20px; /* Espacio entre las tarjetas */
+}
+
+/* TaskCard.css */
+
+.task-card {
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding-top: 16px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.task-card h1 {
+  font-size: 20px;
+  margin: 0;
+}
+
+.task-card p {
+  margin: 10px 0;
+  font-size: 16px;
+}
+
+.task-card hr {
+  border: 0.5px solid #ccc;
+  margin: 10px 0;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.pagination ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+}
+
+.pagination li {
+  margin-right: 5px;
+}
+
+.pagination button {
+  background-color: #007BFF;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.pagination button:hover {
+  background-color: #0056b3;
+}
+
+/* Estilo para el botón de página actual */
+.pagination button.active {
+  background-color: #0056b3;
+}
+
+.task-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr; /* Tres columnas iguales */
+  border-radius: 15px;
+  background: #1E2A80;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 10px;
+  color: #fff;
+  justify-content: space-between;
+}
+
+.task-header div {
+  flex: 1;
+  text-align: start;
+}
+
+.slider-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.slider-track {
+  position: relative;
+  width: 160px;
+  height: 20px;
+  background: #ccc;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.slider-button {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  background: #4d62ff;
+  border-radius: 50%;
+  transition: left 0.35s;
+}
+
+.state-2 .slider-button {
+  left: 70px;
+  background: #2b40e0;
+}
+
+.state-3 .slider-button {
+  left: 140px;
+  background: #0f1e8d;
+}
+
+.state-label {
+  margin-top: 10px;
 }
