@@ -94,13 +94,23 @@ body {
 
 .card2 {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr; /* Tres columnas iguales */
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   border-radius: 15px;
   background: #fff;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   padding: 20px;
   margin-bottom: 10px;
   justify-content: space-between;
+}
+
+.card2 button{
+  border-radius: 15px;
+  background: #5464d2;
+  margin-bottom: 18px;
+  padding: 10px 20px; /* Reduce el relleno para hacer el botón más pequeño */
+  cursor: pointer; /* Cambia el cursor al pasar por encima del botón */
+  width: auto; /* Ancho automático para adaptarse al contenido */
+  font-size: 17px;
 }
 
 .image {
@@ -372,7 +382,7 @@ button.parar {
 
 .task-header {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr; /* Tres columnas iguales */
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr; /* Tres columnas iguales */
   border-radius: 15px;
   background: #1E2A80;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -408,7 +418,7 @@ button.parar {
   left: 0;
   width: 20px;
   height: 20px;
-  background: #4d62ff;
+  background: #687aff;
   border-radius: 50%;
   transition: left 0.35s;
 }

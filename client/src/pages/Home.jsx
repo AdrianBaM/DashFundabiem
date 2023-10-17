@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Client } from 'paho-mqtt';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlay, faBan, faHeart, faStop } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 import image1 from '../assets/imagen1.png';
 import image2 from '../assets/imagen2.png';
@@ -214,7 +216,7 @@ export function Home() {
           <div className="center">
             {card.state === 0 && (
               <button className="iniciar" onClick={() => iniciarProceso(index)}>
-                Iniciar
+                <FontAwesomeIcon icon={faPlay} bounce/> Iniciar
               </button>
             )}
             {card.state === 1 && (
@@ -244,10 +246,10 @@ export function Home() {
                 </div>
                 <div className="buttons-column">
                   <button className="iniciar" onClick={() => iniciarTerapia(index)}>
-                    Iniciar
+                    <FontAwesomeIcon icon={faPlay} /> Iniciar
                   </button>
                   <button className="cancelar" onClick={() => cancelarProceso(index)}>
-                    Cancelar
+                    <FontAwesomeIcon icon={faBan} /> Cancelar
                   </button>
                 </div>
               </div>
@@ -257,7 +259,7 @@ export function Home() {
                 <div className="numero-paciente">Código de paciente: {card.numeroPaciente}</div>
                 <br /> <br />
                 <button className="parar" onClick={() => pararTerapia(index)}>
-                  Parar
+                  <FontAwesomeIcon icon={faStop} /> Parar
                 </button>
               </>
             )}
@@ -286,7 +288,7 @@ export function Home() {
             Tiempo restante: {Math.floor(card.tiempoRestante / 3600)}:{Math.floor((card.tiempoRestante % 3600) / 60)}:{card.tiempoRestante % 60 < 10 ? '0' : ''}{card.tiempoRestante % 60}
           </div>
           <div className="pulso-cardiaco">
-            Pulso Cardiaco: {pulsoCardiaco !== null ? pulsoCardiaco : 'Cargando...'}
+            <FontAwesomeIcon icon={faHeart} beat /> {pulsoCardiaco !== null ? pulsoCardiaco : 'Cargando...'}
           </div>
         </div>
       ))}

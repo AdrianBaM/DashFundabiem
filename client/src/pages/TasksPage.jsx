@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { TasksList } from "../components/TasksList";
 import { getAllTasks } from '../api/tasks.api';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser, faClock, faTachographDigital, faCalendarDays } from '@fortawesome/free-solid-svg-icons';
 
 export function TaskPage() {
   const tasksPerPage = 6;
@@ -26,10 +28,11 @@ export function TaskPage() {
   return (
     <div className="container2">
         <div className="task-header">
-          <div>Código de paciente:</div>
-          <div>Dispositivo:</div>
-          <div>Tiempo:</div>
-          <div>Fecha:</div>
+          <div><FontAwesomeIcon icon={faUser} /> Código de paciente:</div>
+          <div><FontAwesomeIcon icon={faTachographDigital} /> Dispositivo:</div>
+          <div><FontAwesomeIcon icon={faClock} /> Tiempo:</div>
+          <div><FontAwesomeIcon icon={faCalendarDays} /> Fecha:</div>
+          <div>Imprimir:</div>
         </div>
       <TasksList tasks={currentTasks} />
       <div className="pagination">
