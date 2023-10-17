@@ -2,11 +2,11 @@ export function TaskCard({ task }) {
     // Función para obtener el nombre del dispositivo basado en el ID
     const getDeviceName = (deviceID) => {
       switch (deviceID) {
-        case 7:
+        case 1:
           return "Guante Izquierdo";
-        case 8:
+        case 2:
           return "Guante Derecho";
-        case 9:
+        case 3:
           return "Rueda de Zenit";
         default:
           return "Dispositivo Desconocido";

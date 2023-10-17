@@ -145,11 +145,11 @@ export function Home() {
   
     let dispositivoNombre = '';
     if (dispositivo === 7) {
-      dispositivoNombre = '7';
+      dispositivoNombre = '1';
     } else if (dispositivo === 8) {
-      dispositivoNombre = '8';
+      dispositivoNombre = '2';
     } else if (dispositivo === 9) {
-      dispositivoNombre = '9';
+      dispositivoNombre = '3';
     }
   
     const datos = {
