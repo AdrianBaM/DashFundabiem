@@ -216,7 +216,7 @@ export function Home() {
           <div className="center">
             {card.state === 0 && (
               <button className="iniciar" onClick={() => iniciarProceso(index)}>
-                <FontAwesomeIcon icon={faPlay} bounce/> Iniciar
+                <FontAwesomeIcon icon={faPlay} /> Iniciar
               </button>
             )}
             {card.state === 1 && (
@@ -246,7 +246,7 @@ export function Home() {
                 </div>
                 <div className="buttons-column">
                   <button className="iniciar" onClick={() => iniciarTerapia(index)}>
-                    <FontAwesomeIcon icon={faPlay} /> Iniciar
+                    <FontAwesomeIcon icon={faPlay} bounce /> Iniciar
                   </button>
                   <button className="cancelar" onClick={() => cancelarProceso(index)}>
                     <FontAwesomeIcon icon={faBan} /> Cancelar
