@@ -42,6 +42,19 @@ export function Home() {
       client.disconnect();
     };
   }, []);
+  const abrirAlgo = (index) => {
+    // Crear un mensaje con la letra "A" y publicarlo en el tema correspondiente
+    const message = new Message('A');
+    message.destinationName = 'g1/control'; // Cambia el tema según tu configuración
+    client.send(message);
+  };
+  
+  const cerrarAlgo = (index) => {
+    // Crear un mensaje con la letra "B" y publicarlo en el tema correspondiente
+    const message = new Message('C');
+    message.destinationName = 'g1/control'; // Cambia el tema según tu configuración
+    client.send(message);
+  };
   const [cards, setCards] = useState([
     {
       state: 0,
@@ -246,7 +259,7 @@ export function Home() {
                 </div>
                 <div className="buttons-column">
                   <button className="iniciar" onClick={() => iniciarTerapia(index)}>
-                    <FontAwesomeIcon icon={faPlay} /> Iniciar
+                    <FontAwesomeIcon icon={faPlay} /> Empezar
                   </button>
                   <button className="cancelar" onClick={() => cancelarProceso(index)}>
                     <FontAwesomeIcon icon={faBan} /> Cancelar
