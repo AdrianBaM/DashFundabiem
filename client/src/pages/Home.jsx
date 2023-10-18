@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Client } from 'paho-mqtt';
+import { Client, Message  } from 'paho-mqtt';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay, faBan, faHeart, faStop, faStopwatch } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
@@ -10,8 +10,9 @@ import { createTask } from '../api/tasks.api';
 
 export function Home() {
   const [pulsoCardiaco, setPulsoCardiaco] = useState(null);
+  const [client, setClient] = useState(null);
   useEffect(() => {
-    const client = new Client('ws://192.168.1.76:9001/', 'dash-client');
+    const client = new Client('ws://192.168.10.134:9001/', 'dash-client');
 
     client.onConnectionLost = (responseObject) => {
       if (responseObject.errorCode !== 0) {
@@ -27,34 +28,50 @@ export function Home() {
       
         setPulsoCardiaco(pulsoPart);
     };
-
+    
     client.connect({
       onSuccess: () => {
         console.log('Conexión al broker MQTT exitosa');
-        client.subscribe('g1/pulso');
+        client.subscribe('r/pulso');
       },
       useSSL: false,
       userName: 'esdras',
       password: 'grupo10',
     });
 
+    setClient(client);
+    
     return () => {
       client.disconnect();
     };
   }, []);
-  const abrirAlgo = (index) => {
-    // Crear un mensaje con la letra "A" y publicarlo en el tema correspondiente
-    const message = new Message('A');
-    message.destinationName = 'g1/control'; // Cambia el tema según tu configuración
-    client.send(message);
+  const abrir = () => {
+    if (client) {
+      // Crear un mensaje con la letra "A" y publicarlo en el tema correspondiente
+      const message = new Message('A');
+      message.destinationName = 'g1/control'; // Cambia el tema según tu configuración
+      client.send(message);
+    }
   };
   
-  const cerrarAlgo = (index) => {
-    // Crear un mensaje con la letra "B" y publicarlo en el tema correspondiente
-    const message = new Message('C');
-    message.destinationName = 'g1/control'; // Cambia el tema según tu configuración
-    client.send(message);
+  const cerrar = () => {
+    if (client) {
+      // Crear un mensaje con la letra "B" y publicarlo en el tema correspondiente
+      const message = new Message('C');
+      message.destinationName = 'g1/control'; // Cambia el tema según tu configuración
+      client.send(message);
+    }
   };
+
+  const iniciar = () => {
+    if (client) {
+      // Crear un mensaje con la letra "B" y publicarlo en el tema correspondiente
+      const message = new Message('I');
+      message.destinationName = 'g1/control'; // Cambia el tema según tu configuración
+      client.send(message);
+    }
+  };
+  
   const [cards, setCards] = useState([
     {
       state: 0,
@@ -125,6 +142,12 @@ export function Home() {
     updatedCards[index].tiempoRestante = tiempoEnSegundos;
     updatedCards[index].temporizadorActivo = true;
     setCards(updatedCards);
+
+    if (client) {
+      const message = new Message('I');
+      message.destinationName = 'g1/control'; // Cambia el tema según tu configuración
+      client.send(message);
+    }
   };
 
   const pararTerapia = (index) => {
@@ -152,6 +175,12 @@ export function Home() {
 
     // Llama a la función para guardar los datos
     guardarDatos(numeroPaciente, tiempo, dispositivo);
+
+    if (client) {
+      const message = new Message('F');
+      message.destinationName = 'g1/control'; // Cambia el tema según tu configuración
+      client.send(message);
+    }
   };
 
   const guardarDatos = (numeroPaciente, tiempo, dispositivo) => {
@@ -289,10 +318,10 @@ export function Home() {
               </div>
             </div>
             <div className="new-row">
-              <button className="abrir" onClick={() => abrirAlgo(index)}>
+              <button className="abrir" onClick={() => abrir(index)}>
                 Abrir
               </button>
-              <button className="cerrar" onClick={() => cerrarAlgo(index)}>
+              <button className="cerrar" onClick={() => cerrar(index)}>
                 Cerrar
               </button>
             </div>
