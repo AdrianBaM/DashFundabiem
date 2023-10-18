@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Client } from 'paho-mqtt';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlay, faBan, faHeart, faStop } from '@fortawesome/free-solid-svg-icons';
+import { faPlay, faBan, faHeart, faStop, faStopwatch } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 import image1 from '../assets/imagen1.png';
 import image2 from '../assets/imagen2.png';
@@ -246,7 +246,7 @@ export function Home() {
                 </div>
                 <div className="buttons-column">
                   <button className="iniciar" onClick={() => iniciarTerapia(index)}>
-                    <FontAwesomeIcon icon={faPlay} bounce /> Iniciar
+                    <FontAwesomeIcon icon={faPlay} /> Iniciar
                   </button>
                   <button className="cancelar" onClick={() => cancelarProceso(index)}>
                     <FontAwesomeIcon icon={faBan} /> Cancelar
@@ -285,7 +285,7 @@ export function Home() {
             </div>
           </div>
           <div className="timer">
-            Tiempo restante: {Math.floor(card.tiempoRestante / 3600)}:{Math.floor((card.tiempoRestante % 3600) / 60)}:{card.tiempoRestante % 60 < 10 ? '0' : ''}{card.tiempoRestante % 60}
+            <FontAwesomeIcon icon={faStopwatch} /> {Math.floor(card.tiempoRestante / 3600)}:{Math.floor((card.tiempoRestante % 3600) / 60)}:{card.tiempoRestante % 60 < 10 ? '0' : ''}{card.tiempoRestante % 60}
           </div>
           <div className="pulso-cardiaco">
             <FontAwesomeIcon icon={faHeart} beat /> {pulsoCardiaco !== null ? pulsoCardiaco : 'Cargando...'}
@@ -295,4 +295,4 @@ export function Home() {
     </div>
   );
 }
-             
+
