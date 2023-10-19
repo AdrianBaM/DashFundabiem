@@ -259,7 +259,6 @@ export function Home() {
       else if (prevState === 2) newState = 3;
       else newState = 1;
   
-      // Aquí, creas un mensaje MQTT y lo envías al servidor
       if (client) {
         const message = new Message(newState.toString());
         message.destinationName = 'g1/control'; // Cambia el tema según tu configuración
