@@ -32,7 +32,7 @@ export function Home() {
     client.connect({
       onSuccess: () => {
         console.log('Conexión al broker MQTT exitosa');
-        client.subscribe('r/pulso');
+        client.subscribe('g1/pulso');
       },
       useSSL: false,
       userName: 'esdras',
