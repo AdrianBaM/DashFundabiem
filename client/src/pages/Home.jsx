@@ -242,9 +242,20 @@ export function Home() {
 
   const handleSliderChange = () => {
     setState((prevState) => {
-      if (prevState === 1) return 2;
-      else if (prevState === 2) return 3;
-      else return 1;
+      let newState;
+  
+      if (prevState === 1) newState = 2;
+      else if (prevState === 2) newState = 3;
+      else newState = 1;
+  
+      // Aquí, creas un mensaje MQTT y lo envías al servidor
+      if (client) {
+        const message = new Message(newState.toString());
+        message.destinationName = 'g1/control'; // Cambia el tema según tu configuración
+        client.send(message);
+      }
+  
+      return newState;
     });
   };
 
