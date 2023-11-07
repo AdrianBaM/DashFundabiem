@@ -42,8 +42,8 @@ export function Home() {
       onSuccess: () => {
         console.log('Conexión al broker MQTT exitosa');
         client.subscribe('g1/pulso');
-        client.subscribe('g2/pulso');
-        client.subscribe('g3/pulso');
+        //client.subscribe('g2/pulso');
+        //client.subscribe('g3/pulso');
       },
       useSSL: false,
       userName: 'esdras',
@@ -308,7 +308,7 @@ export function Home() {
                 />
               </div>
               <div className="buttons-column">
-                <button className="iniciar" onClick={() => iniciarTerapia(index)}>
+                <button className="iniciar" onClick={() => { iniciarTerapia(index)}}>
                   <FontAwesomeIcon icon={faPlay} /> Empezar
                 </button>
                 <button className="cancelar" onClick={() => cancelarProceso(index)}>
@@ -321,7 +321,7 @@ export function Home() {
             <>
               <div className="numero-paciente">Código de paciente: {card.numeroPaciente}</div>
               <br /> <br />
-              <button className="parar" onClick={() => pararTerapia(index)}>
+              <button className="parar" onClick={() => { pararTerapia(index); borrarValores(index); }}>
                 <FontAwesomeIcon icon={faStop} /> Parar
               </button>
             </>
