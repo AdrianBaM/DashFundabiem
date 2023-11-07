@@ -12,7 +12,7 @@ export function Home() {
   const [pulsosCardiacos, setPulsosCardiacos] = useState([null, null, null]);
   const [client, setClient] = useState(null);
   useEffect(() => {
-    const client = new Client('ws://192.168.10.134:9001/', 'dash-client');
+    const client = new Client('ws://192.168.111.73:9001/', 'dash-client');
 
     client.onConnectionLost = (responseObject) => {
       if (responseObject.errorCode !== 0) {
