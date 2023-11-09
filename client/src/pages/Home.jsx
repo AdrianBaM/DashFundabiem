@@ -38,17 +38,19 @@ export function Home() {
       }
     };
     
-    client.connect({
-      onSuccess: () => {
-        console.log('Conexión al broker MQTT exitosa');
-        client.subscribe('g1/pulso');
-        //client.subscribe('g2/pulso');
-        //client.subscribe('g3/pulso');
-      },
-      useSSL: false,
-      userName: 'esdras',
-      password: 'grupo10',
-    });
+client.connect({
+   onSuccess: () => {
+     console.log('Conexión al broker MQTT exitosa');
+     try {
+       client.subscribe('g1/pulso');
+     } catch (error) {
+       console.error('Error durante la suscripción MQTT:', error);
+     }
+   },
+   useSSL: false,
+   userName: 'esdras',
+   password: 'grupo10',
+});
 
     setClient(client);
     
@@ -360,4 +362,3 @@ export function Home() {
   </div>
   );
 }
-
