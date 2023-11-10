@@ -245,7 +245,7 @@ export function Home() {
 
   useEffect(() => {
     let intervalIds = [];
-
+  
     cards.forEach((card, index) => {
       if (card.temporizadorActivo && card.tiempoRestante > 0) {
         const intervalId = setInterval(() => {
@@ -255,12 +255,38 @@ export function Home() {
         }, 1000);
         intervalIds.push(intervalId);
       } else if (card.temporizadorActivo && card.tiempoRestante === 0) {
+        // Aquí agregamos la misma lógica que en pararTerapia
         const updatedCards = [...cards];
+        const numeroPaciente = card.numeroPaciente;
+        const tiempo = card.tiempo;
+        let dispositivo = 0;
+  
+        if (index === 0) {
+          dispositivo = 7;
+        } else if (index === 1) {
+          dispositivo = 8;
+        } else if (index === 2) {
+          dispositivo = 9;
+        }
+  
+        updatedCards[index].state = 0;
+        updatedCards[index].displayTime = '';
         updatedCards[index].temporizadorActivo = false;
         setCards(updatedCards);
+  
+        guardarDatos(numeroPaciente, tiempo, dispositivo);
+  
+        if (client) {
+          const message = new Message('F');
+          message.destinationName = 'g1/control';
+          client.send(message);
+        }
+  
+        // Llamamos a la función borrarValores
+        borrarValores(index);
       }
     });
-
+  
     return () => {
       intervalIds.forEach((intervalId) => clearInterval(intervalId));
     };
