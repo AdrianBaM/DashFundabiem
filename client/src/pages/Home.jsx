@@ -9,10 +9,15 @@ import image3 from '../assets/imagen3.png';
 import { createTask } from '../api/tasks.api';
 
 export function Home() {
-  const [pulsosCardiacos, setPulsosCardiacos] = useState([null, null, null]);
+  const [pulsosCardiacos, setPulsosCardiacos] = useState({
+    g1: null,
+    g2: null,
+    g3: null,
+  });
   const [client, setClient] = useState(null);
+
   useEffect(() => {
-    const client = new Client('ws://192.168.111.73:9001/', 'dash-client');
+    const client = new Client('ws://192.168.1.76:9001/', 'dash-client');
 
     client.onConnectionLost = (responseObject) => {
       if (responseObject.errorCode !== 0) {
@@ -22,42 +27,52 @@ export function Home() {
 
     client.onMessageArrived = (message) => {
       console.log(`Mensaje recibido en el tema ${message.destinationName}: ${message.payloadString}`);
-      
+
       // Extrae la cadena de pulso directamente
       const pulsoPart = message.payloadString.split('Pulso: ')[1];
-      
+
+      // Actualiza el estado de acuerdo con el tema del mensaje
       if (message.destinationName === 'g1/pulso') {
-        // Asocia el pulso con la tarjeta 1
-        setPulsosCardiacos([pulsoPart, pulsosCardiacos[1], pulsosCardiacos[2]]);
+        setPulsosCardiacos((prevState) => ({
+          ...prevState,
+          g1: pulsoPart,
+        }));
       } else if (message.destinationName === 'g2/pulso') {
-        // Asocia el pulso con la tarjeta 2
-        setPulsosCardiacos([pulsosCardiacos[0], pulsoPart, pulsosCardiacos[2]]);
+        setPulsosCardiacos((prevState) => ({
+          ...prevState,
+          g2: pulsoPart,
+        }));
       } else if (message.destinationName === 'g3/pulso') {
-        // Asocia el pulso con la tarjeta 3
-        setPulsosCardiacos([pulsosCardiacos[0], pulsosCardiacos[1], pulsoPart]);
+        setPulsosCardiacos((prevState) => ({
+          ...prevState,
+          g3: pulsoPart,
+        }));
       }
     };
-    
-client.connect({
-   onSuccess: () => {
-     console.log('Conexión al broker MQTT exitosa');
-     try {
-        client.subscribe('g1/pulso');
-     } catch (error) {
-        console.error('Error durante la suscripción MQTT:', error);
-     }
-   },
-   useSSL: false,
-   userName: 'esdras',
-   password: 'grupo10',
-});
+
+    client.connect({
+      onSuccess: () => {
+        console.log('Conexión al broker MQTT exitosa');
+        try {
+          client.subscribe('g3/pulso');
+          client.subscribe('g1/pulso');
+          client.subscribe('g2/pulso');
+        } catch (error) {
+          console.error('Error durante la suscripción MQTT:', error);
+        }
+      },
+      useSSL: false,
+      userName: 'esdras',
+      password: 'grupo10',
+    });
 
     setClient(client);
-    
+
     return () => {
       client.disconnect();
     };
   }, []);
+  
   const abrir = () => {
     if (client) {
       // Crear un mensaje con la letra "A" y publicarlo en el tema correspondiente
@@ -300,7 +315,7 @@ client.connect({
                 <br /> <br />
                 <input
                   type="text"
-                  placeholder="Tiempo"
+                  placeholder="Tiempo en minutos"
                   value={card.tiempo}
                   onChange={(e) => {
                     const updatedCards = [...cards];
@@ -355,7 +370,7 @@ client.connect({
           <FontAwesomeIcon icon={faStopwatch} /> {Math.floor(card.tiempoRestante / 3600)}:{Math.floor((card.tiempoRestante % 3600) / 60)}:{card.tiempoRestante % 60 < 10 ? '0' : ''}{card.tiempoRestante % 60}
         </div>
         <div className="pulso-cardiaco">
-          <FontAwesomeIcon icon={faHeart} beat /> {pulsosCardiacos[index] !== null ? pulsosCardiacos[index] : 'Cargando...'}
+          <FontAwesomeIcon icon={faHeart} beat /> {pulsosCardiacos[`g${index + 1}`] !== null ? pulsosCardiacos[`g${index + 1}`] : 'Cargando...'}
         </div>
       </div>
     ))}
