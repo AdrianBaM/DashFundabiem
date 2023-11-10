@@ -43,8 +43,6 @@ client.connect({
      console.log('Conexión al broker MQTT exitosa');
      try {
         client.subscribe('g1/pulso');
-        client.subscribe('g2/pulso');
-        client.subscribe('g3/pulso');
      } catch (error) {
         console.error('Error durante la suscripción MQTT:', error);
      }
