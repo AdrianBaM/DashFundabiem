@@ -13,6 +13,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Navigate to="/tasks" />} />
         <Route path='/tasks' element={<TaskPage />} />
+
         <Route path='/tasks-create' element={<TaskFormPage />} />
         <Route path='/tasks-dash' element={<Home />} />
         <Route path='/tasks-mqtt' element={<MqttClient/>} />
