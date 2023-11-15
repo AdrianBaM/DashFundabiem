@@ -17,7 +17,7 @@ export function Home() {
   const [client, setClient] = useState(null);
 
   useEffect(() => {
-    const client = new Client('ws://192.168.1.97:9001/', 'dash-client');
+    const client = new Client('ws://192.168.111.73:9001/', 'dash-client');
 
     client.onConnectionLost = (responseObject) => {
       if (responseObject.errorCode !== 0) {
@@ -62,8 +62,11 @@ export function Home() {
         }
       },
       useSSL: false,
-      userName: 'uttaMeso',
-      password: '3829jxa2',
+      //userName: 'uttaMeso',
+      //password: '3829jxa2',
+
+      userName: 'esdras',
+      password: 'grupo10',
     });
 
     setClient(client);

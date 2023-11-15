@@ -4,7 +4,7 @@ import "../index.css";
 import image1 from '../assets/Logo-Meso-Color_medio.png';
 import image2 from '../assets/FUNDABIEM.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBook, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import { faBook, faMagnifyingGlass, faUser } from '@fortawesome/free-solid-svg-icons';
 import { faTachometerAlt } from '@fortawesome/free-solid-svg-icons';
 
 export function Navigation() {
@@ -25,6 +25,10 @@ export function Navigation() {
         <li>
           <FontAwesomeIcon icon={faMagnifyingGlass} />
           <Link to="/tasks-search">Búsqueda</Link>
+        </li>
+        <li>
+          <FontAwesomeIcon icon={faUser} />
+          <Link to="/tasks-search">About</Link>
         </li>
         <li>
           <img src={image2} alt="Logo" className="custom-image2" />
