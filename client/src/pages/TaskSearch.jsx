@@ -30,7 +30,7 @@ export function TaskSearch() {
         <FontAwesomeIcon icon={faSearch} />
         <input
           type="text"
-          placeholder="Buscar por número de paciente"
+          placeholder="Buscar por código de paciente"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />

@@ -436,3 +436,51 @@ button.parar {
 .state-label {
   margin-top: 10px;
 }
+
+.about-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 70vh;
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+.about-section h1 {
+  margin: 10px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 8px;
+  border: 1px solid #2b40e0;
+  border-radius: 10px;
+  background: #2b40e0;
+}
+
+.search-bar input {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 8px;
+  border-radius: 4px;
+  margin: 0 auto; /* Centrar horizontalmente */
+  max-width: 400px; /* Ancho máximo */
+  background: #2b40e0;
+  color: #fff;
+}
+
+.search-bar input::placeholder {
+  color: #fff;
+}
+
+.search-bar svg {
+  margin-right: 10px;
+  color: #fff;
+}
