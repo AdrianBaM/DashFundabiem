@@ -28,7 +28,7 @@ export function Navigation() {
         </li>
         <li>
           <FontAwesomeIcon icon={faUser} />
-          <Link to="/about">About</Link>
+          <Link to="/about">Acerca de</Link>
         </li>
         <li>
           <img src={image2} alt="Logo" className="custom-image2" />
