@@ -196,15 +196,21 @@ button.cancelar {
 
 /* Estilos para mostrar el temporizador en estado 2 */
 .card.estado-2 .timer {
-  display: block; /* Muestra el temporizador en el estado 2 */
-  text-align: end;;
+  display: block; 
+  text-align: end;
   font-size: 20px;
 }
 
 .card.estado-2 .pulso-cardiaco{
-  display: block; /* Muestra el temporizador en el estado 2 */
-  text-align: end;;
+  display: block; 
+  text-align: end;
   font-size: 20px;
+}
+
+.card.estado-2 .conteo-vueltas{
+  display: block; 
+  text-align: center;
+  font-size: 15px;
 }
 
 /* Oculta el temporizador en estado 0 y estado 1 */
@@ -442,16 +448,45 @@ button.parar {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 70vh;
+  height: 80vh;
   font-family: Arial, sans-serif;
   color: #333;
 }
 
-.about-section h1 {
-  margin: 10px;
-  font-size: 24px;
-  font-weight: bold;
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
 }
+
+.header h1{
+  font-size: 27px;  
+}
+
+.header img {
+  width: 140px;
+  margin-bottom: 10px;
+}
+
+.team {
+  display: flex;
+  justify-content: space-around;
+  width: 80%;
+}
+
+.member {
+  text-align: center;
+}
+
+.member img {
+  border-radius: 50%;
+  margin-bottom: 10px;
+  width: 105px; 
+  height: 105px; 
+  object-fit: cover;
+}
+
 
 
 .search-bar {
@@ -470,8 +505,8 @@ button.parar {
   margin-bottom: 20px;
   padding: 8px;
   border-radius: 4px;
-  margin: 0 auto; /* Centrar horizontalmente */
-  max-width: 400px; /* Ancho máximo */
+  margin: 0 auto; 
+  max-width: 400px; 
   background: #2b40e0;
   color: #fff;
 }

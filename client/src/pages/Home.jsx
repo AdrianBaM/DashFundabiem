@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Client, Message  } from 'paho-mqtt';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlay, faBan, faHeart, faStop, faStopwatch } from '@fortawesome/free-solid-svg-icons';
+import { faPlay, faBan, faHeart, faStop, faStopwatch, faSync } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 import image1 from '../assets/imagen1.png';
 import image2 from '../assets/imagen2.png';
@@ -130,6 +130,7 @@ export function Home() {
       tiempoRestante: 0,
       temporizadorActivo: false,
       dispositivo: 0,
+      conteoVueltas: 0,
     },
   ]);
   const images = [image1, image2, image3];
@@ -307,7 +308,7 @@ export function Home() {
   
       if (client) {
         const message = new Message(newState.toString());
-        message.destinationName = 'g1/control'; // Cambia el tema según tu configuración
+        message.destinationName = 'g1/control'; 
         client.send(message);
       }
   
@@ -400,6 +401,13 @@ export function Home() {
         </div>
         <div className="pulso-cardiaco">
           <FontAwesomeIcon icon={faHeart} beat /> {pulsosCardiacos[`g${index + 1}`] !== null ? pulsosCardiacos[`g${index + 1}`] : 'Cargando...'}
+        </div>
+        <div className="conteo-vueltas">
+          {card.state === 2 && index === cards.length - 1 && (
+            <>
+              <FontAwesomeIcon icon={faSync} spin /> Conteo de vueltas: {card.conteoVueltas}
+            </>
+          )}
         </div>
       </div>
     ))}
