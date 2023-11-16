@@ -14,7 +14,7 @@ export function Navigation() {
           <img src={image1} alt="Logo" className="custom-image" />
         </li>
         <li>
-          <FontAwesomeIcon icon={faBook} /> {/* Muestra el ícono */}
+          <FontAwesomeIcon icon={faBook} />
           <Link to="/tasks">Historial</Link>
         </li>
         <li>
