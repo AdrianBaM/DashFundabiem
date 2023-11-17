@@ -17,7 +17,7 @@ export function Home() {
   const [client, setClient] = useState(null);
 
   useEffect(() => {
-    const client = new Client('ws://192.168.5.199:9001/', 'dash-client');
+    const client = new Client('ws://192.168.1.76:9001/', 'dash-client');
 
     client.onConnectionLost = (responseObject) => {
       if (responseObject.errorCode !== 0) {
@@ -134,7 +134,7 @@ export function Home() {
       tiempoRestante: 0,
       temporizadorActivo: false,
       dispositivo: 0,
-      conteoVueltas: 0,
+      conteoVueltas: '',
     },
   ]);
   const images = [image1, image2, image3];
