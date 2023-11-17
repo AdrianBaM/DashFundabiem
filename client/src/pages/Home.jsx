@@ -17,7 +17,7 @@ export function Home() {
   const [client, setClient] = useState(null);
 
   useEffect(() => {
-    const client = new Client('ws://192.168.111.73:9001/', 'dash-client');
+    const client = new Client('ws://192.168.5.199:9001/', 'dash-client');
 
     client.onConnectionLost = (responseObject) => {
       if (responseObject.errorCode !== 0) {
@@ -78,27 +78,24 @@ export function Home() {
   
   const abrir = () => {
     if (client) {
-      // Crear un mensaje con la letra "A" y publicarlo en el tema correspondiente
       const message = new Message('A');
-      message.destinationName = 'g1/control'; // Cambia el tema según tu configuración
+      message.destinationName = 'g1/control';
       client.send(message);
     }
   };
   
   const cerrar = () => {
     if (client) {
-      // Crear un mensaje con la letra "B" y publicarlo en el tema correspondiente
       const message = new Message('C');
-      message.destinationName = 'g1/control'; // Cambia el tema según tu configuración
+      message.destinationName = 'g1/control'; 
       client.send(message);
     }
   };
 
   const iniciar = () => {
     if (client) {
-      // Crear un mensaje con la letra "B" y publicarlo en el tema correspondiente
       const message = new Message('I');
-      message.destinationName = 'g1/control'; // Cambia el tema según tu configuración
+      message.destinationName = 'g3/control';
       client.send(message);
     }
   };
@@ -160,24 +157,24 @@ export function Home() {
     setCards(updatedCards);
   };
 
-  const iniciarTerapia = (index, dispositivo) => {
+  const iniciarTerapia = (index) => {
     const updatedCards = [...cards];
     updatedCards[index].state = 2;
-    updatedCards[index].dispositivo = dispositivo;
+    updatedCards[index].dispositivo = index === 2 ? 9 : index === 1 ? 8 : 7;
     setCards(updatedCards);
-
+  
     const tiempo = cards[index].tiempo;
     const tiempoEnMinutos = parseInt(tiempo, 10);
     const tiempoEnSegundos = tiempoEnMinutos * 60;
-
+  
     updatedCards[index].displayTime = tiempo + ':00';
     updatedCards[index].tiempoRestante = tiempoEnSegundos;
     updatedCards[index].temporizadorActivo = true;
     setCards(updatedCards);
-
+  
     if (client) {
       const message = new Message('I');
-      message.destinationName = 'g1/control'; // Cambia el tema según tu configuración
+      message.destinationName = index === 2 ? 'g3/control' : 'g1/control';
       client.send(message);
     }
   };
@@ -185,12 +182,12 @@ export function Home() {
   const pararTerapia = (index) => {
     const updatedCards = [...cards];
     const card = updatedCards[index];
-
+  
     // Recopila los datos relevantes
     const numeroPaciente = card.numeroPaciente;
     const tiempo = card.tiempo;
     let dispositivo = 0; // Por defecto, dispositivo 0
-
+  
     if (index === 0) {
       dispositivo = 7; // ID del Guante Izquierdo
     } else if (index === 1) {
@@ -198,22 +195,23 @@ export function Home() {
     } else if (index === 2) {
       dispositivo = 9; // ID de la Rueda de Zennit
     }
-
+  
     // Detiene la terapia
     card.state = 0;
     card.displayTime = '';
     card.temporizadorActivo = false;
     setCards(updatedCards);
-
+  
     // Llama a la función para guardar los datos
     guardarDatos(numeroPaciente, tiempo, dispositivo);
-
+  
     if (client) {
       const message = new Message('F');
-      message.destinationName = 'g1/control'; // Cambia el tema según tu configuración
+      message.destinationName = index === 2 ? 'g3/control' : 'g1/control';
       client.send(message);
     }
   };
+  
 
   const guardarDatos = (numeroPaciente, tiempo, dispositivo) => {
     const fecha = new Date().toISOString();
