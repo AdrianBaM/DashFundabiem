@@ -48,6 +48,12 @@ export function Home() {
           g3: pulsoPart,
         }));
       }
+      if (message.destinationName === 'g3/contador') {
+        const contadorValue = parseInt(message.payloadString, 10); // Parsear el valor a entero
+        const updatedCards = [...cards];
+        updatedCards[2].conteoVueltas = contadorValue; // Actualizar el estado con el valor recibido
+        setCards(updatedCards);
+      }
     };
 
     client.connect({
@@ -57,6 +63,7 @@ export function Home() {
           client.subscribe('g3/pulso');
           client.subscribe('g1/pulso');
           client.subscribe('g2/pulso');
+          client.subscribe('g3/contador'); 
         } catch (error) {
           console.error('Error durante la suscripción MQTT:', error);
         }
@@ -398,7 +405,7 @@ export function Home() {
           <FontAwesomeIcon icon={faStopwatch} /> {Math.floor(card.tiempoRestante / 3600)}:{Math.floor((card.tiempoRestante % 3600) / 60)}:{card.tiempoRestante % 60 < 10 ? '0' : ''}{card.tiempoRestante % 60}
         </div>
         <div className="pulso-cardiaco">
-          <FontAwesomeIcon icon={faHeart} beat /> {pulsosCardiacos[`g${index + 1}`] !== null ? pulsosCardiacos[`g${index + 1}`] : 'Cargando...'}
+          <FontAwesomeIcon icon={faHeart} beat /> {pulsosCardiacos[`g${index + 1}`] !== null ? pulsosCardiacos[`g${index + 1}`] : 'Cargando...'} BPM
         </div>
         <div className="conteo-vueltas">
           {card.state === 2 && index === cards.length - 1 && (
