@@ -17,7 +17,7 @@ export function Home() {
   const [client, setClient] = useState(null);
 
   useEffect(() => {
-    const client = new Client('ws://192.168.111.73:9001/', 'dash-client');
+    const client = new Client('ws://192.168.1.100:9001/', 'dash-client');
 
     client.onConnectionLost = (responseObject) => {
       if (responseObject.errorCode !== 0) {
@@ -83,18 +83,18 @@ export function Home() {
     };
   }, []);
   
-  const abrir = () => {
+  const abrir = (index) => {
     if (client) {
       const message = new Message('A');
-      message.destinationName = 'g1/control';
+      message.destinationName = `g${index + 1}/control`;
       client.send(message);
     }
   };
   
-  const cerrar = () => {
+  const cerrar = (index) => {
     if (client) {
       const message = new Message('C');
-      message.destinationName = 'g1/control'; 
+      message.destinationName = `g${index + 1}/control`;
       client.send(message);
     }
   };
@@ -181,7 +181,8 @@ export function Home() {
   
     if (client) {
       const message = new Message('I');
-      message.destinationName = index === 2 ? 'g3/control' : 'g1/control';
+      const destination = index === 2 ? 'g3/control' : index === 1 ? 'g2/control' : 'g1/control';
+      message.destinationName = destination;
       client.send(message);
     }
   };
@@ -214,7 +215,8 @@ export function Home() {
   
     if (client) {
       const message = new Message('F');
-      message.destinationName = index === 2 ? 'g3/control' : 'g1/control';
+      const destination = index === 2 ? 'g3/control' : index === 1 ? 'g2/control' : 'g1/control';
+      message.destinationName = destination;
       client.send(message);
     }
   };
@@ -287,7 +289,8 @@ export function Home() {
   
         if (client) {
           const message = new Message('F');
-          message.destinationName = 'g1/control';
+          const destination = index === 2 ? 'g3/control' : index === 1 ? 'g2/control' : 'g1/control';
+          message.destinationName = destination;
           client.send(message);
         }
   
@@ -359,7 +362,7 @@ export function Home() {
                   }}
                 />
               </div>
-              <div className="buttons-column">
+              <div className="buttons-column">  
                 <button className="iniciar" onClick={() => { iniciarTerapia(index)}}>
                   <FontAwesomeIcon icon={faPlay} /> Empezar
                 </button>
