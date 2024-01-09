@@ -19,7 +19,7 @@ export function About() {
       <div className="team">
         <div className="member">
           <img src={imageAdrian} alt="Adrian" />
-          <h2>Adrian Barragan</h2>
+          <h2>Adrián Barragán</h2>
         </div>
         <div className="member">
           <img src={imageEsdras} alt="Esdras" />
