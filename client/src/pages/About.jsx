@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import "../index.css";
 import image1 from '../assets/Meso.png';
-import imageAdrian from '../assets/imageAdrian.jpg';
+import imageAdrian from '../assets/imageAdrian.jpeg';
 import imageJosue from '../assets/imageJouse.jpg';
 import imageLuis from '../assets/imageLuis.jpg';
 import imageEsdras from '../assets/imageEsdras.jpg';
